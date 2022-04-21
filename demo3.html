@@ -2,21 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>GrapesJS Preset Webpage</title>
+    <title>Devices Button Demo | GrapesJS Bootstrap4 Plugin</title>
     <link
       href="https://unpkg.com/grapesjs/dist/css/grapes.min.css"
       rel="stylesheet"
     />
-    <!-- Link tag to integrate Preset Webpage Builder Style -->
-    <link
-      rel="stylesheet"
-      href="public/css/lib/grapesjs-preset-webpage.min.css"
-    />
     <script src="https://unpkg.com/grapesjs"></script>
 
-    <!-- Script tag to integrate Preset Webpage Builder Script -->
-    <script src="public/js/lib/grapesjs-preset-webpage.min.js"></script>
-
+    <!-- Script tag to integrate Plugin Bootstrap4 Blocks Builder Script -->
+    <script src="public/js/lib/grapesjs-blocks-bootstrap4.min.js"></script>
     <style>
       body,
       html {
@@ -100,12 +94,54 @@
         storageManager: {},
         container: "#gjs",
         fromElement: true,
-        styleManager: {},
-        plugins: ["gjs-preset-webpage"],
+        showDevices: false,
+        plugins: ["grapesjs-blocks-bootstrap4"],
         pluginsOpts: {
-          "gjs-preset-webpage": {},
+          "grapesjs-blocks-bootstrap4": {
+            blocks: {},
+            blockCategories: {},
+            labels: {},
+            gridDevices: true,
+            gridDevicesPanel: true,
+            formPredefinedActions: [
+              { name: "Contact", value: "/contact" },
+              { name: "landing", value: "/landing" },
+            ],
+          },
+        },
+        canvas: {
+          styles: [
+            "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css",
+          ],
+          scripts: [
+            "https://code.jquery.com/jquery-3.3.1.slim.min.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js",
+            "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js",
+          ],
         },
       });
+
+      // Start: Add new custom responsive device button
+      const dm = editor.DeviceManager;
+      dm.add("Extra Extra Small", "375px");
+
+      const pn = editor.Panels;
+      const panelResponsiveDevices = pn.addPanel({ id: "devices-buttons" });
+      panelResponsiveDevices.get("buttons").add([
+        {
+          id: "deviceXxs",
+          command: "set-device-xxs",
+          className: "fa fa-mobile",
+          attributes: { title: "Extra Extra Small" },
+        },
+      ]);
+      // End: Add new custom responsive device button
+
+      // Start: Add Define new commands
+      const cm = editor.Commands;
+      cm.add("set-device-xl", (e) => e.setDevice("Desktop"));
+      cm.add("set-device-xxs", (e) => e.setDevice("Extra Extra Small"));
+      // End: Add Define new commands
     </script>
   </body>
 </html>
