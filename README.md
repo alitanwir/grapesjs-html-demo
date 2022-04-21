@@ -14,3 +14,8 @@ GrapesJS HTML Demo
 - demo5.html : Integrated Navbar Plugin to enable Navbar block component
 - demo6.html : Added Custom Block Components - Text Selection and Quote inside Basic Category & Test Block under Extra Category
 - demos.html : It consists of all the demo files (demo1.html to demo6.html) code bundled into one file.
+
+### All the resource files Javascript & CSS are inside public directory.
+
+- public/css: Contains grapesjs CSS file
+- public/js/lib: Contains grapesjs JS files
